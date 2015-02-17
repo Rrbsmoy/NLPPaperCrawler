@@ -100,6 +100,7 @@ class CrawlerDlg(QDialog):
         layout.addWidget(self.progress_scroll, 3, 0, 1, 2)
         layout.addWidget(self.display_label, 4, 0, 1, 2)
         self.setLayout(layout)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint)
         self.resize(1, 1)
         self.setWindowTitle(u'Paper Crawler')
 
