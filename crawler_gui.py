@@ -14,7 +14,7 @@ from PyQt4.QtCore import *
 from nlppapercrawler import *
 
 
-class CrawlerDlg(QDialog):
+class CrawlerDlg(QWidget):
     def __init__(self, parent=None):
 
         self.no = 1
@@ -100,12 +100,13 @@ class CrawlerDlg(QDialog):
         layout.addWidget(self.progress_scroll, 3, 0, 1, 2)
         layout.addWidget(self.display_label, 4, 0, 1, 2)
         self.setLayout(layout)
-        self.setWindowFlags(Qt.WindowStaysOnTopHint)
-        self.resize(1, 1)
+        self.resize(600, 400)
+        desktop = QApplication.desktop()
+        self.move((desktop.width()-self.width())/2, (desktop.height()-self.height())/2)
         self.setWindowTitle(u'Paper Crawler')
 
         self.connect(ok_button, SIGNAL("clicked()"), self.begin_download)
-        self.connect(cancel_button, SIGNAL("clicked()"), SLOT('reject()'))
+        self.connect(cancel_button, SIGNAL("clicked()"), SLOT('close()'))
         self.connect(update_conf, SIGNAL("clicked()"), self.update_conference)
         self.connect(self.all_search, SIGNAL("clicked()"), self.search_clicked)
         self.connect(self.all_select, SIGNAL("clicked()"), self.select_clicked)
